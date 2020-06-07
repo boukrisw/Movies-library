@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "movies-library",
+      "public": "dist/movies-library",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

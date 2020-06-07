@@ -1,0 +1,52 @@
+<div class="detailsfilm" *ngIf="this.tmdb.filmdetail != null">
+    <div>{{this.tmdb.filmdetail.title}}</div>
+    <img src="https://image.tmdb.org/t/p/w500/{{this.tmdb.filmdetail.poster_path}}"/>
+    <div>{{this.tmdb.filmdetail.overview}}</div>
+
+    <table>
+        <tr>
+          <th class="like">
+              <img (click)="like()" class="small"  src="../../assets/images/like.svg"/>
+          </th>
+          <th class="dislike">              
+              <img (click)="dislike()" class="small"  src="../../assets/images/dislike.svg"/>
+          </th>
+          <th>              
+              <input style="width: 400px;" placeholder="comment" [(ngModel)]="this.tmdb.filmdetail.comment">
+          </th>
+          <th>              
+              <button (click)="addComment()">add</button>
+          </th>
+        </tr>
+        <tr>
+          <th> 
+              {{getLikes(this.tmdb.filmdetail.id)}}
+          </th>
+          <th>             
+              {{getDisLikes(this.tmdb.filmdetail.id)}}
+          </th>
+        </tr>
+    </table>
+    Comments:
+    <table>
+        <tr *ngFor="let comment of this.getComments()">
+            <div class="dialogbox">
+                <div class="body">
+                  <span class="tip tip-left"></span>
+                  <div class="message">
+                    <th>
+                        {{comment.comment}}
+                    </th>
+                    <th style="color: deepskyblue;">
+                        {{comment.date}}
+                    </th>
+                  </div>
+                </div>
+              </div>
+            
+             
+        </tr>    
+    </table>
+
+    
+</div>

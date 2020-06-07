@@ -1,0 +1,77 @@
+div.detailsfilm{
+    z-index: -1;
+    position: absolute;
+    top : 100px;
+}
+
+img{
+    height: 100px;
+    width: 70px;
+}
+
+img.small{
+    height: 25px ;
+    width: 25px ;
+}
+
+img.dislike{
+    height: 25px ;
+    width: 25px ;
+}
+img.like{
+    height: 25px ;
+    width: 25px ;
+}
+
+.dislikeSelect{
+    background-color: red;
+}
+
+
+.likeSelect{
+    background-color: green;
+}
+
+th.dislike:hover {
+    background-color: red;
+}
+th.like:hover {
+    background-color: green;
+}
+
+
+.tip {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    background: transparent;
+    border: 10px solid #ccc;
+  }
+  
+  .tip-left {
+    top: 10px;
+    left: -25px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;  
+  }
+  
+  .dialogbox .body {
+    position: relative;
+    /*max-width: 300px;*/
+    height: auto;
+    margin: 20px 10px;
+    padding: 5px;
+    background-color: #DADADA;
+    border-radius: 3px;
+    border: 5px solid #ccc;
+  }
+  
+  .body .message {
+    min-height: 30px;
+    border-radius: 3px;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #797979;
+  }

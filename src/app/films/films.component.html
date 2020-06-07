@@ -1,0 +1,182 @@
+    <div class="film" style="float:left;width:80%;">
+      <div *ngIf="tmdb.RechercheTrouve">
+        <div *ngIf="tmdb.RechrcheResult.results.length>0 ; else vide">
+            <div class="card-container">
+                <div *ngFor="let film of tmdb.RechrcheResult.results ; let index = index;">
+                <a class="card" >
+                    <table (click)="click(film.id)" routerLink="/details">
+                        <tr>
+                           <th>
+                              <img src="https://image.tmdb.org/t/p/w500/{{film.poster_path}}"/>
+                           </th>
+                           <th>              
+                              <span>{{film.title}}</span>
+                           </th>
+                        </tr>
+                        <tr>
+                          <th>
+                             <img class="small" src="../../assets/images/popularity.svg"/>                    
+                          </th>
+                          <th>              
+                             <img class="small" src="../../assets/images/date.svg"/>              
+                          </th>
+                        </tr>
+                        <tr>
+                           <th>
+                              <span>{{film.popularity}}</span>
+                           </th>
+                           <th>              
+                              <span>{{film.release_date}}</span>
+                           </th>
+                        </tr>
+                    </table>
+                </a>
+                <table>
+                    <tr>
+                      <th class="like">
+                          <img (click)="like(film.id)" class="small"  src="../../assets/images/like.svg"/>
+                      </th>
+                      <th class="dislike">              
+                          <img (click)="dislike(film.id)" class="small"  src="../../assets/images/dislike.svg"/>
+                      </th>
+                      <th>              
+                          <input placeholder="comment" [(ngModel)]="film.comment">
+                      </th>
+                      <th>              
+                          <button (click)="addCommentSearch(index)">add</button>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                          {{getLikes(film.id)}}
+                      </th>
+                      <th>             
+                          {{getDisLikes(film.id)}}
+                      </th>
+                    </tr>
+                </table>
+                  </div>
+            </div>
+        </div>
+        <ng-template #vide>
+            <b>No results</b>
+        </ng-template>
+      </div>
+    
+      <div *ngIf="!tmdb.RechercheTrouve && tmdb.PopularFilms!=null">
+        <div class="card-container">
+            <div *ngFor="let film of tmdb.PopularFilms.results ; let index = index;">
+            <a  class="card">
+              <table (click)="click(film.id)" routerLink="/details" >
+                  <tr>
+                     <th>
+                        <img src="https://image.tmdb.org/t/p/w500/{{film.poster_path}}"/>
+                     </th>
+                     <th>              
+                        <span>{{film.title}}</span>
+                     </th>
+                  </tr>
+                  <tr>
+                    <th>
+                       <img class="small" src="../../assets/images/popularity.svg"/>                    
+                    </th>
+                    <th>              
+                       <img class="small" src="../../assets/images/date.svg"/>              
+                    </th>
+                  </tr>
+                  <tr>
+                     <th>
+                        <span>{{film.popularity}}</span>
+                     </th>
+                     <th>              
+                        <span>{{film.release_date}}</span>
+                     </th>
+                  </tr>
+              </table>
+            </a>
+            <table>
+              <tr>
+                <th class="like">
+                    <img (click)="like(film.id)" class="small"  src="../../assets/images/like.svg"/>
+                </th>
+                <th class="dislike">              
+                    <img (click)="dislike(film.id)" class="small"  src="../../assets/images/dislike.svg"/>
+                </th>
+                <th>              
+                    <input placeholder="comment" [(ngModel)]="film.comment">
+                </th>
+                <th>              
+                    <button (click)="addComment(index)">add</button>
+                </th>
+              </tr>
+              <tr>
+                <th> 
+                    {{getLikes(film.id)}}
+                </th>
+                <th>             
+                    {{getDisLikes(film.id)}}
+                </th>
+              </tr>
+          </table>
+            </div>
+        </div>
+      </div>    
+    </div>
+
+    <div class="infos" style="float:left;width:20%;">
+        <div *ngIf="this.auth.connected; else elseBlock">
+            <div>
+                Up Coming Films :
+            </div>
+            <table>
+                <tr *ngFor="let film of tmdb.UpComingFilms.results ; let i = index;" (click)="click(film.id)" routerLink="/details">
+                        <th>
+                            <img class="UpComingFilm" src="https://image.tmdb.org/t/p/w500/{{film.poster_path}}"/>
+                        </th>
+                        <th>
+                            {{film.title}}
+                        </th>
+                </tr>
+            </table>
+
+        </div>
+        <ng-template #elseBlock>
+            <table>        
+                <tr>
+                    Create an account.<br/>
+                    It takes 2 secondes!!!
+                </tr>
+                <tr>
+                    <th>
+                        <input placeholder="First name" [(ngModel)]="Fname">
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <input placeholder="Last name" [(ngModel)]="Lname">
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <input placeholder="Email" [(ngModel)]="mail">
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="password" placeholder="Password" [(ngModel)]="pwd">
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <input placeholder="Birthday DD/MM/YYYY" [(ngModel)]="birthday">
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <button (click)="CreateAccount()">Sign Up</button>
+                    </th>
+                </tr>
+            </table>
+        </ng-template>
+    </div>    
+

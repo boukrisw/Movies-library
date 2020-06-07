@@ -1,0 +1,14 @@
+<div class="activity">
+    activity works!{{this.auth.userId}}
+
+
+    <div *ngFor="let act of this.getTable(); let i = index">
+        <script>
+            this.film(act.idFilm)
+        </script>
+        {{act.action}} {{this.names[i]}} en {{act.date}} 
+    </div>
+
+</div>
+
+

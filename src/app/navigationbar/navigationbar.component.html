@@ -1,0 +1,46 @@
+<div class="toolbar" role="banner">
+    <img
+      (click)="home()"
+      routerLink="/"
+      title="home" 
+      width="40"
+      src="../../assets/images/home.svg"
+    />
+
+    <div class="spacer"></div>
+
+    <div class="recherche">
+        <table>
+            <tr>
+                <th>
+                    <input placeholder="Search a Movie" [(ngModel)]="searchQuery">
+                </th>
+                <th>
+                    <button routerLink="/" (click)="searchClick()">search</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="spacer"></div>
+    <table *ngIf="!this.auth.connected ; else connected">
+        <tr>
+            <th>
+                <input placeholder="E-mail" [(ngModel)]="email">
+            </th>
+            <th>
+                <input type="password" placeholder="password" [(ngModel)]="password">
+            </th>
+            <th>
+                <button (click)="login()">Log In</button>
+            </th>
+        </tr>
+    </table>
+    <ng-template #connected>
+            <ul>
+                <!--<li><a routerLink="/activity">Activity Log</a></li>-->
+                <!--<li><a routerLink="/account">Account</a></li>-->
+                <li style="cursor: pointer;" routerLink="/" class="logout" (click)="logout()"><a>Log out</a></li>
+            </ul>
+    </ng-template>
+  </div>
